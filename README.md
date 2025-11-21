@@ -23,12 +23,12 @@ A professional NestJS backend API for managing objects with image uploads to S3-
 - **File Upload**: Multer
 - **Validation**: class-validator & class-transformer
 - **Language**: TypeScript
-- **Runtime**: Node.js 18+
+- **Runtime**: Node.js 22+
 
 ## Prerequisites
 
-- Node.js 18+ and npm/yarn
-- MongoDB 5.0+ (local or Atlas)
+- Node.js 22+ and npm/yarn
+- MongoDB 5.0+ (Atlas)
 - S3-compatible storage account (Cloudflare R2, DigitalOcean Spaces, or Backblaze B2)
 - Docker & Docker Compose (optional, for containerized setup)
 
@@ -38,8 +38,8 @@ A professional NestJS backend API for managing objects with image uploads to S3-
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd heyamo
+git clone https://github.com/zangue-mbcode/nestjs-heyama-api-test.git
+cd nestjs-heyama-api-test
 
 # Install dependencies
 npm install
@@ -66,7 +66,7 @@ NODE_ENV=development
 CORS_ORIGIN=*
 
 # MongoDB
-MONGODB_URI=mongodb://localhost:27017/heyamo
+MONGODB_URI=mongodb+srv://<username>:<password>@<url>.mongodb.net/<cluster>
 
 # S3 Configuration (choose your provider)
 S3_ENDPOINT=https://your-s3-endpoint.com
@@ -88,28 +88,6 @@ S3_ACCESS_KEY_ID=<access_key>
 S3_SECRET_ACCESS_KEY=<secret_key>
 S3_BUCKET_NAME=<bucket-name>
 S3_PUBLIC_URL=https://<custom-domain-or-public-url>
-```
-
-#### DigitalOcean Spaces
-
-```env
-S3_ENDPOINT=https://<region>.digitaloceanspaces.com
-S3_REGION=<region>
-S3_ACCESS_KEY_ID=<access_key>
-S3_SECRET_ACCESS_KEY=<secret_key>
-S3_BUCKET_NAME=<space-name>
-S3_PUBLIC_URL=https://<space-name>.<region>.cdn.digitaloceanspaces.com
-```
-
-#### Backblaze B2
-
-```env
-S3_ENDPOINT=https://s3.<region>.backblazeb2.com
-S3_REGION=<region>
-S3_ACCESS_KEY_ID=<app_key_id>
-S3_SECRET_ACCESS_KEY=<app_key>
-S3_BUCKET_NAME=<bucket-name>
-S3_PUBLIC_URL=https://<custom-url>
 ```
 
 ## Running the Application
@@ -165,6 +143,7 @@ Content-Type: multipart/form-data
 ```json
 {
   "_id": "507f1f77bcf86cd799439011",
+  "id": "2f481c82-17ec-4ac6-8151-b7cc2ead7ce2",
   "title": "My Object",
   "description": "Object description",
   "imageUrl": "https://your-public-url.com/objects/1699540000000-abc123def456.jpeg",
@@ -184,6 +163,7 @@ GET /objects
 [
   {
     "_id": "507f1f77bcf86cd799439011",
+    "id": "2f481c82-17ec-4ac6-8151-b7cc2ead7ce2",
     "title": "Object 1",
     "description": "Description 1",
     "imageUrl": "https://your-public-url.com/objects/...",
@@ -191,6 +171,7 @@ GET /objects
   },
   {
     "_id": "507f1f77bcf86cd799439012",
+    "id": "2f481c82-17ec-4ac6-8151-b7cc2ead7ce2",
     "title": "Object 2",
     "description": "Description 2",
     "imageUrl": "https://your-public-url.com/objects/...",
@@ -209,6 +190,7 @@ GET /objects/:id
 ```json
 {
   "_id": "507f1f77bcf86cd799439011",
+  "id": "2f481c82-17ec-4ac6-8151-b7cc2ead7ce2",
   "title": "My Object",
   "description": "Object description",
   "imageUrl": "https://your-public-url.com/objects/...",
